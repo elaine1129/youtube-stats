@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - 16
+
+services: 
+  - docker
+
+before_install: #predeployment / staging
+  - docker build -t  elainelow123/youtube-stats -f Dockerfile.dev .
+
+script: #deployment / staging
+  - docker run elainelow123/youtube-stats npm run test -- --coverage
